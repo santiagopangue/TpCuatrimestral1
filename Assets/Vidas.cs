@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class Vidas : MonoBehaviour
 {
-    int vidas;
+    public int vidas;
     public Text txt_vidas;
     public Text txt_perdiste;
     public GameObject btn_reiniciar;
@@ -24,14 +24,12 @@ public class Vidas : MonoBehaviour
         if (transform.position.y < -3f)
         {
             vidas--;
+            transform.position = new Vector3(0, 1, 0);
         }
-        if(vidas == 0)
+        if(vidas <= 0)
         {
             txt_perdiste.text = "Perdiste!!";
             Destroy(gameObject);
-        }
-        if(vidas == 0)
-        {
             btn_reiniciar.SetActive(true);
         }
     }
