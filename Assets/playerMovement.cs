@@ -51,6 +51,11 @@ public class playerMovement : MonoBehaviour
         if (col.gameObject.tag == "piso")
         {
             hasJump = true;
+            jumpForce = 3;
+        }
+        if (col.gameObject.name == "PisoRampa")
+        {
+            jumpForce = 6;
         }
     }
 }

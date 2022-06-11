@@ -18,6 +18,7 @@ public class playerCollision : MonoBehaviour
 
     void OnCollisionEnter(Collision col)
     {
+        
         if (col.gameObject.name == "PisoChicoTrampa1")
         {
             transform.position = new Vector3(0f, 1f, 0f);
