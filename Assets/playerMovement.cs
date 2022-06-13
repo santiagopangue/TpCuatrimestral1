@@ -8,6 +8,7 @@ public class playerMovement : MonoBehaviour
     public float rotationSpeed;
     public float jumpForce;
     public Rigidbody rb;
+    public AudioManager miAM;
     bool hasJump;
 
     // Start is called before the first frame update
@@ -36,13 +37,14 @@ public class playerMovement : MonoBehaviour
         {
             transform.Rotate(0, -rotationSpeed, 0);
         }
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (Input.GetKeyDown(KeyCode.Space)&& hasJump)
         {
-            if (hasJump)
-            {
-                hasJump = false;
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            }
+            
+            hasJump = false;
+            
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+
+            miAM.PlaySalto();
         }
     }
 
@@ -55,7 +57,11 @@ public class playerMovement : MonoBehaviour
         }
         if (col.gameObject.name == "PisoRampa")
         {
-            jumpForce = 6;
+            jumpForce = 5;
+        }
+        if (col.gameObject.name == "PisoVentilador")
+        {
+            jumpForce = 5;
         }
     }
 }

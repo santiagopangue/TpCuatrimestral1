@@ -9,6 +9,8 @@ public class Vidas : MonoBehaviour
     public Text txt_vidas;
     public Text txt_perdiste;
     public GameObject btn_reiniciar;
+    public GameObject camara;
+    public AudioManager miAM;
 
     // Start is called before the first frame update
     void Start()
@@ -25,20 +27,29 @@ public class Vidas : MonoBehaviour
         {
             vidas--;
             transform.position = new Vector3(0, 1, 0);
+            miAM.PlayMuerte();
         }
         if(vidas <= 0)
         {
             txt_perdiste.text = "Perdiste!!";
             Destroy(gameObject);
             btn_reiniciar.SetActive(true);
+            camara.SetActive(true);
+            miAM.PlayPerdiste();
         }
     }
 
     void OnCollisionEnter(Collision col)
     {
+        if (col.gameObject.name == "Ventilador")
+        {
+            vidas--;
+            miAM.PlayMuerte();
+        }
         if (col.gameObject.name == "Tronco(Clone)")
         {
             vidas--;
+            miAM.PlayMuerte();
         }
         if (col.gameObject.name == "PisoChicoTrampa1")
         {
