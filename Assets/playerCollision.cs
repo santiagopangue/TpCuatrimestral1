@@ -8,6 +8,7 @@ public class playerCollision : MonoBehaviour
 
     public Text txt_timer;
     public Text txt_ganaste;
+    public Text txt_perdiste;
     public GameObject btn_reiniciar;
     float tiempo = 120;
     public GameObject camara;
@@ -23,8 +24,12 @@ public class playerCollision : MonoBehaviour
         tiempo -= Time.deltaTime;
         txt_timer.text = tiempo.ToString("f0");
 
-        if (tiempo == 0)
+        if (tiempo <= 0)
         {
+            txt_perdiste.text = "Perdiste!!";
+            Destroy(gameObject);
+            btn_reiniciar.SetActive(true);
+            camara.SetActive(true);
             Destroy(gameObject);
             miAM.PlayPerdiste();
         }

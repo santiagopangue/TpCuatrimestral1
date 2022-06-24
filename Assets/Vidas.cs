@@ -12,13 +12,11 @@ public class Vidas : MonoBehaviour
     public GameObject camara;
     public AudioManager miAM;
 
-    // Start is called before the first frame update
     void Start()
     {
         vidas = 10;
     }
 
-    // Update is called once per frame
     void Update()
     {
         txt_vidas.text = "Vidas: " + vidas;
